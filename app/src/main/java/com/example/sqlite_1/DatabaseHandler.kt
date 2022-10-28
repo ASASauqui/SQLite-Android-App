@@ -6,10 +6,11 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
 
-val DATABASE_NAME = "UsuariosDB"
-val TABLE_NAME = "Users"
+val DATABASE_NAME = "ProductsDB1"
+val TABLE_NAME = "Products"
 val COL_NAME = "name"
-val COL_AGE = "age"
+val COL_PRICE = "price"
+val COL_QTY = "qty"
 val COL_ID = "id"
 
 class DatabaseHandler(var context:Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, 1) {
@@ -17,7 +18,8 @@ class DatabaseHandler(var context:Context) : SQLiteOpenHelper(context, DATABASE_
         val createTable = "CREATE TABLE " + TABLE_NAME + " (" +
                 COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COL_NAME + " VARCHAR(255)," +
-                COL_AGE + " INTEGER)"
+                COL_PRICE + " FLOAT,"+
+                COL_QTY + " INT)"
 
         db?.execSQL(createTable)
     }
@@ -26,12 +28,13 @@ class DatabaseHandler(var context:Context) : SQLiteOpenHelper(context, DATABASE_
         TODO("Not yet implemented")
     }
 
-    fun insertData(user: User){
+    fun insertData(product: Product){
         val db = this.writableDatabase
         val cv = ContentValues()
 
-        cv.put(COL_NAME, user.name)
-        cv.put(COL_AGE, user.age)
+        cv.put(COL_NAME, product.name)
+        cv.put(COL_PRICE, product.price)
+        cv.put(COL_QTY, product.qty)
 
         var result = db.insert(TABLE_NAME, null, cv)
 
@@ -43,8 +46,8 @@ class DatabaseHandler(var context:Context) : SQLiteOpenHelper(context, DATABASE_
         }
     }
 
-    fun readData() : MutableList<User> {
-        var list : MutableList<User> = ArrayList()
+    fun readData() : ArrayList<Product> {
+        var list : ArrayList<Product> = ArrayList()
 
         var db = this.readableDatabase
 
@@ -54,12 +57,12 @@ class DatabaseHandler(var context:Context) : SQLiteOpenHelper(context, DATABASE_
 
         if (result.moveToFirst()){
             do {
-                var user = User()
-                user.id = result.getString(0).toInt()
-                user.name = result.getString(1)
-                user.age = result.getString(2).toInt()
+                var product = Product()
+                product.id = result.getString(0).toInt()
+                product.name = result.getString(1)
+                product.price = result.getString(2).toFloat()
 
-                list.add(user)
+                list.add(product)
             } while(result.moveToNext());
         }
 

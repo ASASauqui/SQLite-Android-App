@@ -1,11 +1,14 @@
 package com.example.sqlite_1
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
+import com.example.sqlite_1.adapters.ProductListAdapter
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,33 +17,20 @@ class MainActivity : AppCompatActivity() {
 
         val context = this
 
-        val btnInsert = findViewById<Button>(R.id.btnInsert)
-        val btnRead = findViewById<Button>(R.id.btnRead)
-        val etvName = findViewById<EditText>(R.id.etvName)
-        val etvAge = findViewById<EditText>(R.id.etvAge)
-        val tvResult = findViewById<TextView>(R.id.tvResult)
-
         var db = DatabaseHandler(context)
 
-        btnInsert.setOnClickListener{
-            if(etvName.text.toString().length > 0 &&
-                    etvAge.text.toString().length > 0) {
-                var user = User(etvName.text.toString(), etvAge.text.toString().toInt())
+        var btnInsert = findViewById<Button>(R.id.btnInsert)
 
-                db.insertData(user)
-            }
-            else{
-                Toast.makeText(context, "Please Fill all Data", Toast.LENGTH_SHORT)
+
+        btnInsert.setOnClickListener {
+            Intent(this, NewProduct::class.java).also {
+                startActivity(it)
             }
         }
 
-        btnRead.setOnClickListener{
-            var data = db.readData()
-            tvResult.text = ""
+        var productList = findViewById<RecyclerView>(R.id.productList)
+        var adapter = ProductListAdapter(db.readData())
+        productList.adapter = adapter
 
-            for(i in 0..(data.size-1)){
-                tvResult.append(data.get(i).id.toString() + " " + data.get(i).name + " " + data.get(i).age.toString() + "\n")
-            }
-        }
     }
 }

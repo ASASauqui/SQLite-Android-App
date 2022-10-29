@@ -18,17 +18,20 @@ class ProductListAdapter: RecyclerView.Adapter<ProductListAdapter.ProductViewHol
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.product_item_list, null, false)
+        println("here onCreateViewHolder")
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.product_item_list, null, false)
         return ProductViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        holder.viewName.setText(productList.get(position).name.toString())
-        holder.viewPrice.setText(productList.get(position).price.toString())
-        holder.viewQty.setText(productList.get(position).qty.toString())
+        println("here onBindViewHolder")
+        holder.viewName.text = productList[position].name
+        holder.viewPrice.text = productList[position].price.toString()
+        holder.viewQty.text = productList[position].qty.toString()
     }
 
     override fun getItemCount(): Int {
+        println("here getItemCount")
         return productList.size
     }
 
@@ -40,6 +43,7 @@ class ProductListAdapter: RecyclerView.Adapter<ProductListAdapter.ProductViewHol
         lateinit var viewQty: TextView
 
         constructor(itemView: View) : super(itemView) {
+            println("here ProductViewHolder constructor")
             this.viewName = itemView.findViewById<TextView>(R.id.viewName)
             this.viewPrice = itemView.findViewById<TextView>(R.id.viewPrice)
             this.viewQty = itemView.findViewById<TextView>(R.id.viewQty)

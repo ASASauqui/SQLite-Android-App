@@ -13,26 +13,24 @@ class NewProduct : AppCompatActivity() {
         setContentView(R.layout.activity_new_product)
         val context = this
 
+        val db = DatabaseHandler(context)
 
-        var db = DatabaseHandler(context)
-
-        var txtName = findViewById<EditText>(R.id.txtName)
-        var txtPrice = findViewById<EditText>(R.id.txtPrice)
-        var txtQty = findViewById<EditText>(R.id.txtQty)
-        var btnSave = findViewById<Button>(R.id.btnSave)
-        var btnHome = findViewById<Button>(R.id.btnHome)
-
+        val txtName = findViewById<EditText>(R.id.txtName)
+        val txtPrice = findViewById<EditText>(R.id.txtPrice)
+        val txtQty = findViewById<EditText>(R.id.txtQty)
+        val btnSave = findViewById<Button>(R.id.btnSave)
+        val btnHome = findViewById<Button>(R.id.btnHome)
 
         btnSave.setOnClickListener {
-            if(txtName.text.toString().length > 0 &&
-                txtPrice.text.toString().length> 0 &&
-                txtQty.text.toString().length> 0) {
-                var product = Product(txtName.text.toString(), txtPrice.text.toString().toFloat(), txtQty.text.toString().toInt())
+            if (txtName.text.toString().isNotEmpty() &&
+                txtPrice.text.toString().isNotEmpty() &&
+                txtQty.text.toString().isNotEmpty()
+            ) {
+                val product = Product(txtName.text.toString(), txtPrice.text.toString().toFloat(), txtQty.text.toString().toInt())
 
                 db.insertData(product)
-            }
-            else{
-                Toast.makeText(context, "PLease Fill all data", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "Please fill all data", Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -42,9 +40,5 @@ class NewProduct : AppCompatActivity() {
                 startActivity(it)
             }
         }
-
-
-
-
     }
 }

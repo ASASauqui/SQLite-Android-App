@@ -4,9 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sqlite_1.adapters.ProductListAdapter
 
@@ -17,9 +15,9 @@ class MainActivity : AppCompatActivity() {
 
         val context = this
 
-        var db = DatabaseHandler(context)
+        val db = DatabaseHandler(context)
 
-        var btnInsert = findViewById<Button>(R.id.btnInsert)
+        val btnInsert = findViewById<Button>(R.id.btnInsert)
 
 
         btnInsert.setOnClickListener {
@@ -28,9 +26,14 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        var productList = findViewById<RecyclerView>(R.id.productList)
-        var adapter = ProductListAdapter(db.readData())
-        productList.adapter = adapter
+//        val productList = findViewById<RecyclerView>(R.id.productList)
+//        val adapter = ProductListAdapter(db.readData())
+//        productList.adapter = adapter
 
+        val viewProductList = findViewById<RecyclerView>(R.id.productList)
+        viewProductList.layoutManager = LinearLayoutManager(this)
+//        val db = DatabaseHandler(this)
+        val adapter = ProductListAdapter(db.readData())
+        viewProductList.adapter = adapter
     }
 }

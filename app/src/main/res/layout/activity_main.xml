@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:padding="10dp"
-            android:text="Insert"/>
+            android:text="Agregar producto"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/productList"

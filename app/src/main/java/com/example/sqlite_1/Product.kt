@@ -7,15 +7,13 @@ class Product {
     var qty: Int = 0
 
 
-    constructor(name:String, age:Float, qty: Int){
+    constructor(name: String, price: Float, qty: Int){
         this.name = name
         this.price = price
         this.qty = qty
     }
 
-    constructor(){
-
-    }
+    constructor() {}
 
 
 }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sqlite_1.DeleteProduct
 import com.example.sqlite_1.Product
 import com.example.sqlite_1.R
 import com.example.sqlite_1.UpdateProduct
@@ -45,9 +46,18 @@ class ProductListAdapter: RecyclerView.Adapter<ProductListAdapter.ProductViewHol
             this.viewPrice = itemView.findViewById<TextView>(R.id.viewPrice)
             this.viewQty = itemView.findViewById<TextView>(R.id.viewQty)
             val btnEdit = itemView.findViewById<Button>(R.id.btnEdit)
+            val btnDelete = itemView.findViewById<Button>(R.id.btnDelete)
 
             btnEdit.setOnClickListener { view ->
                 Intent(view.context, UpdateProduct::class.java).also {
+                    val context = view.context
+                    it.putExtra("ID", productList[adapterPosition].id)
+                    context.startActivity(it)
+                }
+            }
+
+            btnDelete.setOnClickListener { view ->
+                Intent(view.context, DeleteProduct::class.java).also {
                     val context = view.context
                     it.putExtra("ID", productList[adapterPosition].id)
                     context.startActivity(it)

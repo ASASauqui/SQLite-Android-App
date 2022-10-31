@@ -70,6 +70,28 @@ class DatabaseHandler(var context:Context) : SQLiteOpenHelper(context, DATABASE_
         return isValid
     }
 
+    fun deleteOne(id: Int) : Boolean {
+        val db = this.writableDatabase
+
+        var isValid = false
+
+        val updateProduct = "DELETE FROM " + TABLE_NAME + " WHERE id = '" + id + "'"
+
+        try{
+            db.execSQL(updateProduct)
+            isValid = true
+        }
+        catch (ex: Exception){
+            ex.toString()
+            isValid = false
+        }
+        finally {
+            db.close()
+        }
+
+        return isValid
+    }
+
     fun readData() : ArrayList<Product> {
         val list : ArrayList<Product> = ArrayList()
 

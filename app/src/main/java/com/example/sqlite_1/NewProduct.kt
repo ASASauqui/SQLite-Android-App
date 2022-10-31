@@ -29,8 +29,12 @@ class NewProduct : AppCompatActivity() {
                 val product = Product(txtName.text.toString(), txtPrice.text.toString().toFloat(), txtQty.text.toString().toInt())
 
                 db.insertData(product)
+
+                Intent(this, MainActivity::class.java).also {
+                    startActivity(it)
+                }
             } else {
-                Toast.makeText(context, "Please fill all data", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "POR FAVOR RELLENE TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show()
             }
 
         }

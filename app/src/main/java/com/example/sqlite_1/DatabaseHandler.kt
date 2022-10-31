@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
+import java.lang.Exception
 
 const val DATABASE_NAME = "ProductsDB1"
 const val TABLE_NAME = "Products"
@@ -45,6 +46,30 @@ class DatabaseHandler(var context:Context) : SQLiteOpenHelper(context, DATABASE_
         }
     }
 
+    fun updateData(id: Int, name: String, price: Float, qty: Int) : Boolean {
+        val db = this.writableDatabase
+
+        var isValid = false
+
+        val updateProduct = "UPDATE $TABLE_NAME " +
+                "SET $COL_NAME= '$name', $COL_PRICE = '$price', $COL_QTY = '$qty' " +
+                "WHERE $COL_ID = '$id'"
+
+        try{
+            db.execSQL(updateProduct)
+            isValid = true
+        }
+        catch (ex: Exception){
+            ex.toString()
+            isValid = false
+        }
+        finally {
+            db.close()
+        }
+
+        return isValid
+    }
+
     fun readData() : ArrayList<Product> {
         val list : ArrayList<Product> = ArrayList()
 
@@ -69,5 +94,27 @@ class DatabaseHandler(var context:Context) : SQLiteOpenHelper(context, DATABASE_
         result.close()
         db.close()
         return list
+    }
+
+    fun readDataProduct(id: Int): Product {
+        val db = this.readableDatabase
+
+        val query = "Select * from $TABLE_NAME WHERE id = $id LIMIT 1"
+
+        val result = db.rawQuery(query, null)
+
+        val product = Product();
+
+        if (result.moveToFirst()){
+            product.id = result.getString(0).toInt()
+            product.name = result.getString(1)
+            product.price = result.getString(2).toFloat()
+            product.qty = result.getString(3).toInt()
+        }
+
+        result.close()
+        db.close()
+
+        return product;
     }
 }

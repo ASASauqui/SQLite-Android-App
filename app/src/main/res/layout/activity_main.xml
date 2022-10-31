@@ -20,10 +20,10 @@
             android:padding="10dp"
             android:text="Agregar producto"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/productList"
-            android:layout_width="match_parent"
-            android:layout_height="656dp" />
+        <FrameLayout
+            android:id="@+id/flFragment"
+            android:layout_width="409dp"
+            android:layout_height="653dp" />
     </LinearLayout>
 
 

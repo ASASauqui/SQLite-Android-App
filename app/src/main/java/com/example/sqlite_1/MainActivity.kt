@@ -13,27 +13,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val context = this
+        val fragment = ViewProductList()
 
-        val db = DatabaseHandler(context)
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.flFragment, fragment)
+            commit()
+        }
 
         val btnInsert = findViewById<Button>(R.id.btnInsert)
-
 
         btnInsert.setOnClickListener {
             Intent(this, NewProduct::class.java).also {
                 startActivity(it)
             }
         }
-
-//        val productList = findViewById<RecyclerView>(R.id.productList)
-//        val adapter = ProductListAdapter(db.readData())
-//        productList.adapter = adapter
-
-        val viewProductList = findViewById<RecyclerView>(R.id.productList)
-        viewProductList.layoutManager = LinearLayoutManager(this)
-//        val db = DatabaseHandler(this)
-        val adapter = ProductListAdapter(db.readData())
-        viewProductList.adapter = adapter
     }
 }

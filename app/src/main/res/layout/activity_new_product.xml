@@ -7,27 +7,48 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/viewName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nombre:"
+        />
     <EditText
         android:id="@+id/txtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nombre"
+        android:labelFor="@+id/viewName"
+        android:hint=""
         />
 
+    <TextView
+        android:id="@+id/viewPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Precio:"
+        />
     <EditText
         android:id="@+id/txtPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
-        android:hint="Precio"
+        android:labelFor="@+id/viewPrice"
+        android:hint=""
         />
 
+    <TextView
+        android:id="@+id/viewQty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cantidad en el inventario:"
+        />
     <EditText
         android:id="@+id/txtQty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:labelFor="@+id/viewQty"
         android:inputType="number"
-        android:hint="Cantidad en inventario"
+        android:hint=""
         />
 
     <Button
@@ -36,10 +57,10 @@
         android:layout_height="wrap_content"
         android:text="Guardar" />
 
-    <Button
-        android:id="@+id/btnHome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Inicio" />
+    <!--    <Button-->
+    <!--        android:id="@+id/btnHome"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Inicio" />-->
 
 </LinearLayout>

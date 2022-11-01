@@ -27,8 +27,8 @@ class ProductListAdapter: RecyclerView.Adapter<ProductListAdapter.ProductViewHol
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         holder.viewName.text = this.productList[position].name
-        holder.viewPrice.text = this.productList[position].price.toString()
-        holder.viewQty.text = this.productList[position].qty.toString()
+        holder.viewPrice.text = "$" + this.productList[position].price.toString()
+        holder.viewQty.text = this.productList[position].qty.toString() + (if (this.productList[position].qty != 1) " unidades" else " unidad")
     }
 
     override fun getItemCount(): Int {

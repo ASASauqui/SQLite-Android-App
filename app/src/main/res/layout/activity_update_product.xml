@@ -57,10 +57,10 @@
         android:layout_height="wrap_content"
         android:text="Guardar" />
 
-    <Button
-        android:id="@+id/btnHome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Inicio" />
+<!--    <Button-->
+<!--        android:id="@+id/btnHome"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Inicio" />-->
 
 </LinearLayout>

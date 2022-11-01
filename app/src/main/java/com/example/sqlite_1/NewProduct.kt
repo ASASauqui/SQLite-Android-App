@@ -19,7 +19,7 @@ class NewProduct : AppCompatActivity() {
         val txtPrice = findViewById<EditText>(R.id.txtPrice)
         val txtQty = findViewById<EditText>(R.id.txtQty)
         val btnSave = findViewById<Button>(R.id.btnSave)
-        val btnHome = findViewById<Button>(R.id.btnHome)
+//        val btnHome = findViewById<Button>(R.id.btnHome)
 
         btnSave.setOnClickListener {
             if (txtName.text.toString().isNotEmpty() &&
@@ -39,10 +39,10 @@ class NewProduct : AppCompatActivity() {
 
         }
 
-        btnHome.setOnClickListener {
-            Intent(this, MainActivity::class.java).also {
-                startActivity(it)
-            }
-        }
+//        btnHome.setOnClickListener {
+//            Intent(this, MainActivity::class.java).also {
+//                startActivity(it)
+//            }
+//        }
     }
 }

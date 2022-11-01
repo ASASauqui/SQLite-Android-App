@@ -40,9 +40,9 @@ class DatabaseHandler(var context:Context) : SQLiteOpenHelper(context, DATABASE_
         val result = db.insert(TABLE_NAME, null, cv)
 
         if (result == (-1).toLong()) {
-            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Error al agregar, intenta de nuevo", Toast.LENGTH_SHORT).show()
         } else {
-            Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Producto agregado!", Toast.LENGTH_SHORT).show()
         }
     }
 

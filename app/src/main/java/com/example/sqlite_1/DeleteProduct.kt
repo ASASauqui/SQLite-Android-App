@@ -38,7 +38,7 @@ class DeleteProduct : AppCompatActivity() {
         val product = db.readDataProduct(id)
 
         if(product != null){
-            txtConfirm.setText("¿Desea eliminar el producto " + product.name + "?")
+            txtConfirm.setText("¿Desea eliminar el producto \"" + product.name + "\"?")
         }
 
 
@@ -51,10 +51,10 @@ class DeleteProduct : AppCompatActivity() {
         btnAccept.setOnClickListener {
 
             if(db.deleteOne(product.id)){
-                Toast.makeText(context, "PRODUCTO ELIMINADO", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Producto eliminado!", Toast.LENGTH_SHORT).show()
             }
             else{
-                Toast.makeText(context, "ERROR AL ELIMINAR", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Error al eliminar, intenta de nuevo", Toast.LENGTH_SHORT).show()
             }
 
 

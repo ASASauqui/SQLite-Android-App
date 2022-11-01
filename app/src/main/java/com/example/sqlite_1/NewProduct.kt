@@ -24,7 +24,7 @@ class NewProduct : AppCompatActivity() {
         btnSave.setOnClickListener {
             if (txtName.text.toString().isNotEmpty() &&
                 txtPrice.text.toString().isNotEmpty() &&
-                txtQty.text.toString().isNotEmpty()
+                txtQty.text.toString().isNotEmpty() && txtQty.text.toString().toInt() != 0
             ) {
                 val product = Product(txtName.text.toString(), txtPrice.text.toString().toFloat(), txtQty.text.toString().toInt())
 
@@ -34,7 +34,7 @@ class NewProduct : AppCompatActivity() {
                     startActivity(it)
                 }
             } else {
-                Toast.makeText(context, "POR FAVOR RELLENE TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Por favor verifica todos los campos", Toast.LENGTH_SHORT).show()
             }
 
         }

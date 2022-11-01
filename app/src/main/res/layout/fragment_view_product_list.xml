@@ -9,6 +9,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/productList"
         android:layout_width="match_parent"
-        android:layout_height="656dp" />
+        android:layout_height="wrap_content"
+        android:background="#F8F8F8" />
 
 </FrameLayout>

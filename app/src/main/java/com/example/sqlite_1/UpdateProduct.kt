@@ -52,26 +52,28 @@ class UpdateProduct : AppCompatActivity() {
             val priceText = txtPrice.text.toString()
             val qtyText = txtQty.text.toString()
 
-            if(nameText.isNotEmpty() && priceText.isNotEmpty() && qtyText.isNotEmpty()){
+            if (nameText.isNotEmpty() &&
+                priceText.isNotEmpty() &&
+                qtyText.isNotEmpty()) {
                 isValid = db.updateData(id, nameText, priceText.toFloat(), qtyText.toInt())
 
                 txtName.setText(nameText)
                 txtPrice.setText(priceText)
                 txtQty.setText(qtyText)
 
-                if(isValid){
-                    Toast.makeText(context, "PRODUCTO ACTUALIZADO", Toast.LENGTH_SHORT).show()
+                if (isValid) {
+                    Toast.makeText(context, "Producto actualizado!", Toast.LENGTH_SHORT).show()
 
                     Intent(view.context, MainActivity::class.java).also {
                         context.startActivity(it)
                     }
                 }
                 else{
-                    Toast.makeText(context, "ERROR AL ACTUALIZAR", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Error al actualizar, intenta de nuevo", Toast.LENGTH_SHORT).show()
                 }
             }
             else{
-                Toast.makeText(context, "ALGUNOS CAMPOS ESTÁN VACÍOS. RELLÉNELOS PARA ACTUALIZAR", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Por favor verifica todos los campos", Toast.LENGTH_SHORT).show()
             }
         }
 
